@@ -1,0 +1,4 @@
+# Bloquea el acceso directo por web al archivo de configuración con la API key
+<Files "config.php">
+  Require all denied
+</Files>

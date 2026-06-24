@@ -3,3 +3,6 @@ node_modules
 .env.local
 .vercel
 .DS_Store
+
+# Config con la API key (solo en el servidor, nunca en el repo público)
+api/config.php

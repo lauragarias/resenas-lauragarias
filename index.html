@@ -401,7 +401,9 @@
       results.innerHTML = '';
 
       try {
-        const r = await fetch('/api/generar', {
+        // En Vercel usa la función Node; en el hosting (Webempresa) usa PHP.
+        const endpoint = location.hostname.endsWith('vercel.app') ? '/api/generar' : 'api/generar.php';
+        const r = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
