@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#222C58" />
+
+  <title>Generador de reseñas para Google ✱ Laura G.Arias</title>
+  <meta name="description" content="Crea reseñas auténticas para tu ficha de Google en segundos: cuenta tu experiencia, sube fotos y copia el texto listo para pegar. Una herramienta de Laura G.Arias ✱ SEO Local." />
+  <link rel="canonical" href="https://resenas-gbp.vercel.app/" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Laura G.Arias ✱ SEO Local" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:url" content="https://resenas-gbp.vercel.app/" />
+  <meta property="og:title" content="Generador de reseñas para Google ✱ Laura G.Arias" />
+  <meta property="og:description" content="Cuenta tu experiencia, sube fotos y copia tu reseña lista para pegar en Google. Sin líos, en segundos." />
+  <meta property="og:image" content="https://resenas-gbp.vercel.app/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Generador de reseñas para Google — Laura G.Arias" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Generador de reseñas para Google ✱ Laura G.Arias" />
+  <meta name="twitter:description" content="Cuenta tu experiencia, sube fotos y copia tu reseña lista para pegar en Google. Sin líos, en segundos." />
+  <meta name="twitter:image" content="https://resenas-gbp.vercel.app/og.png" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg fill='%23E9619E'%3E%3Crect x='17' y='3' width='6' height='34' rx='3'/%3E%3Crect x='17' y='3' width='6' height='34' rx='3' transform='rotate(60 20 20)'/%3E%3Crect x='17' y='3' width='6' height='34' rx='3' transform='rotate(120 20 20)'/%3E%3C/g%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend+Deca:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-navy:   #222C58;
+      --color-indigo: #354091;
+      --color-pink:   #E9619E;
+      --color-yellow: #FFCF00;
+      --color-black:  #010101;
+      --color-white:  #FFFFFF;
+      --color-base:   #F0F0F0;
+      --color-base-2: #F7F8F9;
+      --color-gray:   #575760;
+      --color-muted:  #B2B2BE;
+      --color-link:   #1E73BE;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-text:    'Lexend Deca', sans-serif;
+      --radius-pill:  25px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-text);
+      color: var(--color-black);
+      font-size: 17px;
+      line-height: 1.5;
+      background: var(--color-base-2);
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 18px 64px;
+    }
+
+    /* Header */
+    header {
+      background: var(--color-navy);
+      color: var(--color-white);
+      padding: 24px 18px 28px;
+      text-align: center;
+    }
+    header .ast { color: var(--color-pink); }
+    .logo { display: block; width: 230px; max-width: 70%; height: auto; margin: 2px auto 0; }
+    .brandtag {
+      font-family: var(--font-display); font-size: 14px; letter-spacing: 2.5px;
+      color: #C9CCE2; margin-top: 4px;
+    }
+    header hr {
+      border: none; border-top: 1px solid rgba(255,255,255,.14);
+      width: 60px; margin: 14px auto 12px;
+    }
+    header h1 {
+      font-family: var(--font-text);
+      font-weight: 800;
+      font-size: 22px;
+      line-height: 1.1;
+      margin: 0 0 6px;
+      color: var(--color-white);
+    }
+    header p { margin: 0; font-size: 14px; color: #C9CCE2; }
+
+    /* Sections */
+    .card {
+      background: var(--color-white);
+      border-radius: 18px;
+      padding: 20px 18px;
+      margin-top: 18px;
+      box-shadow: 0 2px 14px rgba(34,44,88,.06);
+    }
+    .lead {
+      font-size: 14.5px; color: var(--color-gray);
+      background: var(--color-base); border-radius: 14px;
+      padding: 13px 15px; margin-top: 18px;
+    }
+    .lead b { color: var(--color-navy); }
+
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--color-navy);
+      margin: 16px 0 6px;
+    }
+    label:first-of-type { margin-top: 0; }
+    label .req { color: var(--color-pink); }
+    .hint { font-weight: 400; color: var(--color-muted); font-size: 13px; }
+
+    input[type=text], textarea, select {
+      width: 100%;
+      font-family: var(--font-text);
+      font-size: 16px;
+      color: var(--color-black);
+      background: var(--color-base-2);
+      border: 1.5px solid #E2E4EC;
+      border-radius: 12px;
+      padding: 12px 14px;
+      transition: border-color .15s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--color-indigo);
+      background: var(--color-white);
+    }
+    textarea { resize: vertical; min-height: 64px; }
+
+    /* Stars */
+    .stars { display: flex; gap: 6px; font-size: 34px; line-height: 1; }
+    .stars span { cursor: pointer; color: #DADCE4; transition: transform .1s; }
+    .stars span.on { color: var(--color-yellow); }
+    .stars span:active { transform: scale(1.2); }
+
+    /* Chips (tono) */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      border: 1.5px solid #E2E4EC; background: var(--color-white);
+      border-radius: var(--radius-pill); padding: 8px 15px;
+      font-size: 14px; cursor: pointer; user-select: none;
+    }
+    .chip.on { border-color: var(--color-navy); background: var(--color-navy); color: var(--color-white); }
+
+    /* Photos */
+    .photobtn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      border: 1.5px dashed var(--color-muted); border-radius: 12px;
+      padding: 16px; color: var(--color-gray); cursor: pointer; font-size: 15px;
+      background: var(--color-base-2);
+    }
+    .photobtn:active { background: var(--color-base); }
+    #previews { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .thumb { position: relative; width: 72px; height: 72px; border-radius: 10px; overflow: hidden; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .thumb button {
+      position: absolute; top: 2px; right: 2px; width: 22px; height: 22px;
+      border: none; border-radius: 50%; background: rgba(1,1,1,.65); color: #fff;
+      font-size: 14px; line-height: 1; cursor: pointer;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: var(--color-yellow); color: var(--color-black);
+      border: 2px solid var(--color-yellow); border-radius: var(--radius-pill);
+      font-family: var(--font-text); font-weight: 700; font-size: 17px;
+      text-transform: uppercase; padding: 15px 24px; width: 100%;
+      cursor: pointer; margin-top: 22px;
+    }
+    .btn-primary:disabled { opacity: .55; cursor: default; }
+    .btn-copy {
+      background: var(--color-black); color: var(--color-white);
+      border: 2px solid var(--color-black); border-radius: var(--radius-pill);
+      font-family: var(--font-text); font-weight: 700; font-size: 14px;
+      padding: 9px 20px; cursor: pointer;
+    }
+    .btn-copy.done { background: var(--color-pink); border-color: var(--color-pink); }
+    .btn-ghost {
+      background: none; border: none; color: var(--color-link);
+      font-family: var(--font-text); font-size: 14px; cursor: pointer; padding: 0;
+    }
+
+    /* Results */
+    #results { margin-top: 6px; }
+    .review {
+      background: var(--color-white); border-radius: 16px; padding: 18px;
+      margin-top: 14px; box-shadow: 0 2px 14px rgba(34,44,88,.06);
+    }
+    .review .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .review .ver { font-family: var(--font-display); font-size: 22px; color: var(--color-pink); }
+    .review .text { white-space: pre-wrap; font-size: 16px; color: #1a1a1a; }
+
+    .spinner {
+      width: 22px; height: 22px; border: 3px solid rgba(1,1,1,.15);
+      border-top-color: var(--color-navy); border-radius: 50%;
+      display: inline-block; vertical-align: middle; animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .center { text-align: center; }
+
+    .err { color: #B0264E; font-size: 14.5px; margin-top: 12px; }
+    footer { text-align: center; color: var(--color-muted); font-size: 12.5px; margin-top: 28px; }
+    footer .ast { color: var(--color-pink); }
+  </style>
+</head>
+<body>
+  <header>
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1279.3 461" role="img" aria-label="Laura G.Arias">
+      <g fill="#fff">
+        <path d="M80.5,131.4h31.2v169.9h100v28.3H80.5v-198.2Z"/>
+        <path d="M211.7,284.6h-24.3l-4.2-27.8h-29.5l-4.2,27.8h-22.1l24.5-176.3h35.2l24.5,176.3ZM156.8,236h23.2l-11.6-92.3-11.6,92.3Z"/>
+        <path d="M830.5,329.6h-24.3l-4.2-27.8h-29.5l-4.2,27.8h-22.1l24.5-153.2h35.2l24.5,153.2ZM775.5,281h23.2l-11.6-77.5-11.6,77.5Z"/>
+        <path d="M253.7,131.4v152.9c0,14.2,6.2,19.3,16.1,19.3s16.1-5.1,16.1-19.3v-152.9h29.5v151c0,31.7-15.9,49.8-46.4,49.8s-46.4-18.1-46.4-49.8v-151h31.2Z"/>
+        <path d="M391.4,329.6c-1.7-5.1-2.8-8.2-2.8-24.4v-31.2c0-18.4-6.2-25.2-20.4-25.2h-10.8v80.7h-31.2v-198.2h47c32.3,0,46.2,15,46.2,45.6v15.6c0,20.4-6.5,33.7-20.4,40.2,15.6,6.5,20.7,21.5,20.7,42.2v30.6c0,9.6.3,16.7,3.4,24.1h-31.7ZM357.4,159.7v60.9h12.2c11.6,0,18.7-5.1,18.7-21v-19.5c0-14.2-4.8-20.4-15.9-20.4h-15Z"/>
+        <path d="M542.9,329.6h-31.4l-5.4-36h-38.2l-5.4,36h-28.6l31.7-198.2h45.6l31.7,198.2ZM471.8,266.8h30l-15-100.3-15,100.3Z"/>
+        <path d="M905.5,329.6c-1.7-5.1-2.8-8.2-2.8-24.4v-31.2c0-18.4-6.2-25.2-20.4-25.2h-10.8v80.7h-31.2v-198.2h47c32.3,0,46.2,15,46.2,45.6v15.6c0,20.4-6.5,33.7-20.4,40.2,15.6,6.5,20.7,21.5,20.7,42.2v30.6c0,9.6.3,16.7,3.4,24.1h-31.7ZM871.5,159.7v60.9h12.2c11.6,0,18.7-5.1,18.7-21v-19.5c0-14.2-4.8-20.4-15.9-20.4h-15Z"/>
+        <path d="M946.7,180.3h31.2v149.3h-31.2v-149.3Z"/>
+        <path d="M1096.4,329.6h-31.4l-5.4-36h-38.2l-5.4,36h-28.6l31.7-198.2h45.6l31.7,198.2ZM1025.3,266.8h30l-15-100.3-15,100.3Z"/>
+        <path d="M1152.6,129.1c30.3,0,45.9,18.1,45.9,49.8v6.2h-29.5v-8.2c0-14.2-5.7-19.5-15.6-19.5s-15.6,5.4-15.6,19.5c0,40.8,60.9,48.4,60.9,105.1s-15.9,49.8-46.4,49.8-46.4-18.1-46.4-49.8v-12.2h29.5v14.2c0,14.2,6.2,19.3,16.1,19.3s16.1-5.1,16.1-19.3c0-40.8-60.9-48.4-60.9-105.1s15.6-49.8,45.9-49.8Z"/>
+        <path d="M599.4,233.9h47.2v96.7c0,31.7-15.9,49.8-46.4,49.8s-46.4-18.1-46.4-49.8v-200.3c0-31.7,15.9-49.8,46.4-49.8s46.4,18.1,46.4,49.8v44.9h-29.5v-46.9c0-14.2-6.2-19.5-16.1-19.5s-16.1,5.4-16.1,19.5v204.3c0,14.2,6.2,19.3,16.1,19.3s16.1-5.1,16.1-19.3v-70.4h-17.8v-28.3Z"/>
+        <path d="M658.8,329.6v-28.2h78.7v28.2h-78.7Z"/>
+      </g>
+      <g fill="#fb559f">
+        <path d="M711.8,247.6c8.2,1.6,15.9,4.7,23.1,9.4l1.3,1-10.7,19.9-.9-.6c-8-5.2-14.8-12-20.4-20.2,2.7,8.3,4.1,16.9,4.2,25.8v1.6l-20.9.2v-1c0-8.8,1.3-17.4,3.8-25.7-5.4,7.9-11.9,14.3-19.6,19.3l-.9.6-10.7-19.9,1.3-1c7.2-4.7,14.9-7.8,23.1-9.4-8.4-.3-16.5-2.3-24.3-5.9l-1.4-.6,8.2-21.4.7.3c9.1,4.3,17.1,10.3,23.8,18.2-2.7-8.4-4-17.1-4-26.1v-1l20.9.2v1.6c0,9-1.5,17.7-4.3,26.1,6.8-8.2,15-14.5,24.4-19l.7-.3,8.2,21.4-1.4.6c-7.8,3.6-15.9,5.6-24.3,5.9Z"/>
+        <path d="M962.3,168.3l-10.9-10.9c-6-6-6-15.8,0-21.9h0c6-6,15.8-6,21.9,0h0c6,6,6,15.8,0,21.9l-10.9,10.9Z"/>
+      </g>
+    </svg>
+    <div class="brandtag">SEO LOCAL &amp; WEBS CON PROPÓSITO</div>
+    <hr />
+    <h1>Generador de reseñas</h1>
+    <p>Cuéntame tu experiencia real y te la dejo lista para copiar</p>
+  </header>
+
+  <div class="wrap">
+    <div class="lead">
+      <b>Para reseñas auténticas.</b> Rellénala con lo que de verdad viviste:
+      la herramienta solo te ayuda a redactarlo bonito. Nada de inventar ✱
+    </div>
+
+    <form id="form" class="card" autocomplete="off">
+      <label>Nombre del negocio <span class="req">*</span></label>
+      <input type="text" id="negocio" placeholder="Ej. Peluquería Marta" required />
+
+      <label>¿Qué tipo de negocio es? <span class="hint">(opcional)</span></label>
+      <input type="text" id="sector" placeholder="Peluquería, restaurante, dentista…" />
+
+      <label>Ciudad o zona <span class="hint">(opcional — ayuda al SEO local)</span></label>
+      <input type="text" id="ciudad" placeholder="Ej. Granada, centro de Valencia…" />
+
+      <label>¿Qué servicio o producto usaste? <span class="req">*</span></label>
+      <input type="text" id="servicio" placeholder="Ej. corte y color, cena para dos…" required />
+
+      <label>¿Quién te atendió? <span class="hint">(opcional)</span></label>
+      <input type="text" id="atendio" placeholder="Nombre del profesional, si lo recuerdas" />
+
+      <label>Tu puntuación</label>
+      <div class="stars" id="stars" role="radiogroup" aria-label="Puntuación">
+        <span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
+      </div>
+
+      <label>¿Qué es lo que más te gustó? <span class="req">*</span></label>
+      <textarea id="gusto" placeholder="El trato, el resultado, la limpieza, la rapidez…" required></textarea>
+
+      <label>¿Algo que mejorarías? <span class="hint">(opcional)</span></label>
+      <textarea id="mejora" placeholder="Déjalo en blanco si todo fue perfecto"></textarea>
+
+      <label>¿Volverás? <span class="hint">(opcional)</span></label>
+      <div class="chips" id="volveras">
+        <div class="chip on" data-v="">—</div>
+        <div class="chip" data-v="Sí, seguro que vuelvo">Sí, seguro</div>
+        <div class="chip" data-v="Seguramente vuelva">Seguramente</div>
+        <div class="chip" data-v="No creo que vuelva">No</div>
+      </div>
+
+      <label>Relación calidad-precio <span class="hint">(opcional)</span></label>
+      <div class="chips" id="calidad">
+        <div class="chip on" data-v="">—</div>
+        <div class="chip" data-v="muy buena">Muy buena</div>
+        <div class="chip" data-v="buena">Buena</div>
+        <div class="chip" data-v="normal">Normal</div>
+      </div>
+
+      <label>¿A quién se lo recomendarías? <span class="hint">(opcional)</span></label>
+      <input type="text" id="recomienda" placeholder="A familias, a quien busque algo cercano…" />
+
+      <label>Tono de la reseña</label>
+      <div class="chips" id="tonos">
+        <div class="chip on" data-v="Cercano y natural">Cercano y natural</div>
+        <div class="chip" data-v="Entusiasta">Entusiasta</div>
+        <div class="chip" data-v="Sobrio y profesional">Sobrio</div>
+        <div class="chip" data-v="Breve y directo">Breve</div>
+      </div>
+
+      <label>Largo</label>
+      <div class="chips" id="largos">
+        <div class="chip" data-v="corta">Corta</div>
+        <div class="chip on" data-v="media">Media</div>
+        <div class="chip" data-v="larga">Larga</div>
+      </div>
+
+      <label>Fotos <span class="hint">(opcional — fotos reales que hiciste)</span></label>
+      <label class="photobtn" for="fotos">📷 Añadir fotos</label>
+      <input type="file" id="fotos" accept="image/*" multiple hidden />
+      <div id="previews"></div>
+
+      <button type="submit" class="btn-primary" id="submit">Generar reseña ✱</button>
+      <div class="err" id="err" hidden></div>
+    </form>
+
+    <div id="results"></div>
+
+    <footer>Hecho con <span class="ast">✱</span> para Laura G.Arias · SEO Local</footer>
+  </div>
+
+  <script>
+    // ---- Estado de los selectores ----
+    let estrellas = 5, tono = 'Cercano y natural', largo = 'media', volveras = '', calidad = '';
+    const fotos = []; // { dataUrl, mime }
+
+    const $ = (s) => document.querySelector(s);
+
+    // Estrellas
+    const starsEl = $('#stars');
+    function paintStars() {
+      [...starsEl.children].forEach(s => s.classList.toggle('on', +s.dataset.v <= estrellas));
+    }
+    starsEl.addEventListener('click', e => {
+      if (e.target.dataset.v) { estrellas = +e.target.dataset.v; paintStars(); }
+    });
+    paintStars();
+
+    // Chips tono / largo
+    function setupChips(id, set) {
+      const box = $(id);
+      box.addEventListener('click', e => {
+        if (!e.target.dataset.v) return;
+        [...box.children].forEach(c => c.classList.remove('on'));
+        e.target.classList.add('on');
+        set(e.target.dataset.v);
+      });
+    }
+    setupChips('#tonos', v => tono = v);
+    setupChips('#largos', v => largo = v);
+    setupChips('#volveras', v => volveras = v);
+    setupChips('#calidad', v => calidad = v);
+
+    // ---- Fotos: redimensionar en el móvil para subir ligero ----
+    const previews = $('#previews');
+    $('#fotos').addEventListener('change', async e => {
+      for (const file of e.target.files) {
+        if (fotos.length >= 5) break;
+        const dataUrl = await resize(file, 1024, 0.8);
+        const idx = fotos.push({ dataUrl }) - 1;
+        const t = document.createElement('div');
+        t.className = 'thumb';
+        t.innerHTML = `<img src="${dataUrl}"><button type="button" aria-label="Quitar">×</button>`;
+        t.querySelector('button').onclick = () => { fotos[idx] = null; t.remove(); };
+        previews.appendChild(t);
+      }
+      e.target.value = '';
+    });
+
+    function resize(file, max, q) {
+      return new Promise((res, rej) => {
+        const img = new Image();
+        img.onload = () => {
+          let { width: w, height: h } = img;
+          if (w > h && w > max) { h = h * max / w; w = max; }
+          else if (h > max) { w = w * max / h; h = max; }
+          const c = document.createElement('canvas');
+          c.width = w; c.height = h;
+          c.getContext('2d').drawImage(img, 0, 0, w, h);
+          res(c.toDataURL('image/jpeg', q));
+        };
+        img.onerror = rej;
+        img.src = URL.createObjectURL(file);
+      });
+    }
+
+    // ---- Enviar ----
+    const form = $('#form'), submit = $('#submit'), err = $('#err'), results = $('#results');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      err.hidden = true;
+      const negocio = $('#negocio').value.trim();
+      const servicio = $('#servicio').value.trim();
+      const gusto = $('#gusto').value.trim();
+      if (!negocio || !servicio || !gusto) { showErr('Rellena los campos con ✱'); return; }
+
+      submit.disabled = true;
+      submit.innerHTML = '<span class="spinner"></span> Escribiendo…';
+      results.innerHTML = '';
+
+      try {
+        const r = await fetch('/api/generar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            negocio, servicio,
+            sector: $('#sector').value.trim(),
+            ciudad: $('#ciudad').value.trim(),
+            atendio: $('#atendio').value.trim(),
+            estrellas, tono, largo, volveras, calidad,
+            gusto,
+            mejora: $('#mejora').value.trim(),
+            recomienda: $('#recomienda').value.trim(),
+            fotos: fotos.filter(Boolean).map(f => f.dataUrl)
+          })
+        });
+        const data = await r.json();
+        if (!r.ok) throw new Error(data.error || 'Algo ha fallado');
+        render(data.resenas || []);
+      } catch (ex) {
+        showErr(ex.message);
+      } finally {
+        submit.disabled = false;
+        submit.innerHTML = 'Generar reseña ✱';
+      }
+    });
+
+    function showErr(m) { err.textContent = '✱ ' + m; err.hidden = false; }
+
+    function render(list) {
+      if (!list.length) { showErr('No se generó ninguna reseña, prueba otra vez'); return; }
+      results.innerHTML = '';
+      list.forEach((txt, i) => {
+        const div = document.createElement('div');
+        div.className = 'review';
+        div.innerHTML = `
+          <div class="top">
+            <span class="ver">Opción ${i + 1}</span>
+            <button class="btn-copy" type="button">Copiar</button>
+          </div>
+          <div class="text"></div>`;
+        div.querySelector('.text').textContent = txt;
+        const btn = div.querySelector('.btn-copy');
+        btn.onclick = async () => {
+          try { await navigator.clipboard.writeText(txt); }
+          catch { fallbackCopy(txt); }
+          btn.textContent = '¡Copiado! ✓'; btn.classList.add('done');
+          setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('done'); }, 1800);
+        };
+        results.appendChild(div);
+      });
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function fallbackCopy(t) {
+      const ta = document.createElement('textarea');
+      ta.value = t; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); ta.remove();
+    }
+  </script>
+</body>
+</html>

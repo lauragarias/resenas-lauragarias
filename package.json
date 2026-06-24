@@ -1,0 +1,9 @@
+{
+  "name": "resenas-gbp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Generador de reseñas para Google Business Profile — Laura G.Arias",
+  "engines": {
+    "node": ">=18"
+  }
+}
