@@ -3,11 +3,13 @@
 Sube solo los archivos públicos de la app; NO toca api/config.php (la API key
 vive solo en el servidor) ni archivos de configuración del repo."""
 import os
+import base64
 from ftplib import FTP_TLS
 
 host = os.environ["FTP_SERVER"]
 user = os.environ["FTP_USERNAME"]
-pw   = os.environ["FTP_PASSWORD"]
+# La contraseña viaja en base64 (ASCII) para no corromperse en los secrets de GitHub.
+pw = base64.b64decode(os.environ["FTP_PASSWORD_B64"]).decode("utf-8")
 
 # (local, remoto) — añade aquí cualquier archivo nuevo que deba publicarse
 FILES = [
