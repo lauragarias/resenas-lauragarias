@@ -19,8 +19,13 @@ FILES = [
     ("api/.htaccess", "api/.htaccess"),
 ]
 
+print(f"DEBUG user={user!r} pw_len={len(pw)} ascii={pw.isascii()}")
 ftp = FTP_TLS(host, timeout=60)
-ftp.login(user, pw)
+try:
+    ftp.login(user, pw)
+except Exception as e:
+    print("DEBUG login error:", repr(e))
+    raise
 ftp.prot_p()
 print("Conectado por FTPS ✓")
 
